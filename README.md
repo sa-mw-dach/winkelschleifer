@@ -123,6 +123,8 @@ done
 
 ( ExternalDNS, cert-manager, cert-utils)
 
+![image_AWS_LoBa_view](images/AWS_LoBa_010.png)
+
 ## 2 Create DNS hosted zone
 
 ## 3 Create DNS API access credentials
