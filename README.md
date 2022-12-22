@@ -72,6 +72,26 @@ The Red Hat OpenShift cluster you create here will be base of our following acti
 oc new-project microservices-demo
 ```
 
-Deploy Application
-Option 1: Give ANYUID permissions to default service account to allow deployment of Google Code As-Is
-Current deployments use the following security contexts - we need to make arrangements that those settings are valid in our cluster too
+## Deploy Application
+### Option 1: Give ANYUID permissions to default service account
+
+This is done in order to execute a deployment of Google Code As-Is. Current deployments use the following security contexts - we need to make arrangements that those settings are valid in our cluster too.
+
+To be found in microservices-demo/release/kubernetes-manifest.yaml
+
+```
+securityContext:
+        fsGroup: 1000
+        runAsGroup: 1000
+        runAsNonRoot: true
+        runAsUser: 1000
+```
+
+
+
+
+**DNS - wer macht hier eigentlich was**
+
+![image_google_auth](images/winkelschleifer_020.jpg)
+
+
