@@ -72,6 +72,51 @@ The Red Hat OpenShift cluster you create here will be base of our following acti
 oc new-project microservices-demo
 ```
 
-Deploy Application
-Option 1: Give ANYUID permissions to default service account to allow deployment of Google Code As-Is
-Current deployments use the following security contexts - we need to make arrangements that those settings are valid in our cluster too
+## Deploy Application
+
+This is done in order to execute a deployment of Google Code As-Is. Current deployments use the following security contexts - we need to make arrangements that those settings are valid in our cluster too.
+
+To be found in microservices-demo/release/kubernetes-manifest.yaml
+
+```
+securityContext:
+        fsGroup: 1000
+        runAsGroup: 1000
+        runAsNonRoot: true
+        runAsUser: 1000
+```
+
+Based on this article: https://examples.openshift.pub/deploy/scc-anyuid/ 
+
+### Option 1: Give ANYUID permissions to default service account
+
+Add the proper Role
+```
+oc create -f static/release_security_role.json
+```
+Add the related RoleBinding
+```
+oc create -f static/release_security_rolebonding.json
+```
+And use the original kubernetes manifest
+
+```
+oc apply -f ./release/kubernetes-manifests.yaml
+```
+
+### Option 2: Remove SecurityContext & Deploy application
+
+This makes the default OpenShift SCC config work
+
+```
+for DEPLOY in `oc get deployments -o jsonpath='{range .items[*]}{.metadata.name}{" "}{end}'`
+do
+ oc patch deploy/$DEPLOY --type=json -p='[{"op": "remove", "path": "/spec/template/spec/securityContext"}]'
+done
+```
+
+**DNS - wer macht hier eigentlich was**
+
+![image_google_auth](images/winkelschleifer_020.jpg)
+
+
