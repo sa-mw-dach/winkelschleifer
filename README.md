@@ -115,7 +115,7 @@ do
 done
 ```
 
-## DNS - wer macht hier eigentlich was
+# Overview of the installation flow
 
 ![image_google_auth](images/winkelschleifer-sequence.png)
 
