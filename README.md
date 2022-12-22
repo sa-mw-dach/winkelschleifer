@@ -119,4 +119,31 @@ done
 
 ![image_google_auth](images/winkelschleifer-sequence.png)
 
+## 1 Install Operators and basic confiuration(s)
+
+( ExternalDNS, cert-manager, cert-utils)
+
+## 2 Create DNS hosted zone
+
+## 3 Create DNS API access credentials
+
+## 4 Create CA access credentials
+
+## ExternalDNS config
+
+![image_Operator_ExternalDNS](images/Operator_ExternalDNS.png)
+
+### 5 create secret with DNS access credentials
+
+### 6 create ExternalDNS configuration
+
+## Cert-Manager
+
+![image_Operator_certManager](images/Operator_certManager.png)
+
+### 7 create secret with DNS access credentials
+
+### 8 create secret with CA access credentials
+
+### 9 create cert-manager Clusteruser configuration
 
