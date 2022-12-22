@@ -1,0 +1,18 @@
+kind: Route
+apiVersion: route.openshift.io/v1
+metadata:
+  name: getwellsoon-tls
+  namespace: getwellsoon
+  annotations:
+    cert-utils-operator.redhat-cop.io/certs-from-secret: getwellstefan-domain-certificate
+spec:
+  host: getwellstefan.winkelschleifer.marina-sport.de
+  to:
+    kind: Service
+    name: webserver
+    weight: 100
+  tls:
+    termination: edge
+  port:
+    targetPort: 8080
+  wildcardPolicy: None

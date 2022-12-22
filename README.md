@@ -115,7 +115,7 @@ do
 done
 ```
 
-**DNS - wer macht hier eigentlich was**
+## DNS - wer macht hier eigentlich was
 
 ![image_google_auth](images/winkelschleifer-sequence.png)
 
