@@ -123,9 +123,45 @@ done
 
 ( ExternalDNS, cert-manager, cert-utils)
 
+We see the default Loadbalancers which are deployed by EKS
+
 ![image_AWS_LoBa_view](images/AWS_LoBa_010.png)
 
 ## 2 Create DNS hosted zone
+
+![image_AWS_Route53](images/AWS_Route53_HostedZone.png)
+
+![image_AWS_wildcard](images/AWS_WildcardCNAME.png)
+
+You will need to add nameserver information in the config in your provider's frontend
+
+![image_DNS_NS_entried](images/DNS_Create_NS_entries.png)
+
+And we can now add a Red Hat OpenShift route to your service
+
+```
+oc create route edge winkelschleifer-ingress \
+--service frontend --port 8080 \
+--namespace microservices-demo \
+--hostname shop.winkelschleifer.marina-sport.de \
+--insecure-policy=”redirect”
+```
+
+This leads us to the point that we have a route which terminates at our frontend service
+
+![image_route_frontend](images/winkelschleifer_043.png)
+
+And this can be checked as per below command
+
+```
+oc get route
+```
+```
+NAME                      HOST/PORT                                PATH   SERVICES   PORT   TERMINATION     WILDCARD
+testit-tls                testit.winkelschleifer.marina-sport.de          frontend   8080   edge            None
+winkelschleifer-ingress   shop.winkelschleifer.marina-sport.de            frontend   8080   edge/Redirect   None
+```
+
 
 ## 3 Create DNS API access credentials
 
