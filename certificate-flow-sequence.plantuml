@@ -50,7 +50,7 @@ group Usage
     end
 
     group Cert-Utils operator
-        openshift -> openshift: configure route to use certificate
+        openshift -> openshift: configure route to use certificate from secret
     end
 end
 

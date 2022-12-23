@@ -1,9 +1,6 @@
 # winkelschleifer
 Google  microservice addition
 
-# winkelschleifer
-Google  microservice addition
-
 ## Deploy microservices-demo on ROSA
 ### Prepare ROSA environment
 Install CLI Tools, e.g. on macos via homebrew:
