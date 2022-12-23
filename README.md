@@ -2,7 +2,9 @@
 Google  microservice addition
 
 ## Deploy microservices-demo on ROSA
+---
 ### Prepare ROSA environment
+---
 Install CLI Tools, e.g. on macos via homebrew:
 
 * brew install openshift-cli
@@ -10,6 +12,7 @@ Install CLI Tools, e.g. on macos via homebrew:
 * brew install rosa-cli
 
 ### Set up ROSA 
+---
 → follow the console.redhat.com instructions
 
 ```
@@ -24,16 +27,19 @@ You might need to add some details manually:
 **ROSA installation:** https://console-openshift-console.apps.winkelschleifer.wbcq.p1.openshiftapps.com
 
 ## Configure Google Auth
+---
 https://examples.openshift.pub/cluster-configuration/authentication/redhat-sso/  
 
 
 ### Create a new project
+---
 
 ![image_google_auth](images/winkelschleifer_011.png)
 
 ![image_google_auth](images/winkelschleifer_013.png)
 
 ### Add OAuth Client Ids
+---
 ![image_google_auth](images/winkelschleifer_012.png)
 
 ![image_google_auth](images/winkelschleifer_014.png)
@@ -43,12 +49,14 @@ https://examples.openshift.pub/cluster-configuration/authentication/redhat-sso/
 ![image_google_auth](images/winkelschleifer_016.png)
 
 ## Add Google OAuth as identity provider
+---
 
 ```
 rosa create idp --type=google --client-id=626307336472-mrtf4suln41vs30oop1gbb92qmlb57it.apps.googleusercontent.com --client-secret=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 --mapping-method=claim --hosted-domain=redhat.com --cluster=winkelschleifer --name=Google-RedHat
 ```
 
 ### Add Users to dedicated admin role
+---
 Add dedicated users which login via Google ID to the local group of cluster admins
 
 ```
@@ -56,6 +64,7 @@ rosa grant user dedicated-admin --user=wrichter@redhat.com --cluster=winkelschle
 ```
 
 # Deploy Application
+---
 Locally clone the Google project
 
 ```
@@ -63,6 +72,7 @@ git clone https://github.com/GoogleCloudPlatform/microservices-demo
 ```
 
 ## Create new project in ROSA
+---
 The Red Hat OpenShift cluster you create here will be base of our following activities
 
 ```
@@ -70,6 +80,7 @@ oc new-project microservices-demo
 ```
 
 ## Deploy Application
+---
 
 This is done in order to execute a deployment of Google Code As-Is. Current deployments use the following security contexts - we need to make arrangements that those settings are valid in our cluster too.
 
@@ -86,6 +97,7 @@ securityContext:
 Based on this article: https://examples.openshift.pub/deploy/scc-anyuid/ 
 
 ### Option 1: Give ANYUID permissions to default service account
+---
 
 Add the proper Role
 ```
@@ -102,6 +114,7 @@ oc apply -f ./release/kubernetes-manifests.yaml
 ```
 
 ### Option 2: Remove SecurityContext & Deploy application
+---
 
 This makes the default OpenShift SCC config work. And we use the As-Is Kubernetes Manifest:
 
@@ -118,12 +131,14 @@ done
 ```
 
 # Overview of the installation flow
+---
 
 And following Monty Python's Flying Circus .... And now for something completely different [see @https://en.wikipedia.org/wiki/And_Now_for_Something_Completely_Different]
 
 ![image_google_auth](images/winkelschleifer-sequence.png)
 
 ## 1 Install Operators and basic configuration(s)
+---
 
 ( ExternalDNS, cert-manager, cert-utils)
 
@@ -132,6 +147,7 @@ We see the default Loadbalancers which are deployed by EKS
 ![image_AWS_LoBa_view](images/AWS_LoBa_010.png)
 
 ## 2 Create DNS hosted zone
+---
 
 ![image_AWS_Route53](images/AWS_Route53_HostedZone.png)
 
@@ -168,24 +184,33 @@ winkelschleifer-ingress   shop.winkelschleifer.marina-sport.de            fronte
 
 
 ## 3 Create DNS API access credentials
+---
 
 ## 4 Create CA access credentials
+---
 
 ## ExternalDNS config
+---
 
 ![image_Operator_ExternalDNS](images/Operator_ExternalDNS.png)
 
 ### 5 create secret with DNS access credentials
+---
 
 ### 6 create ExternalDNS configuration
+---
 
 ## Cert-Manager
+---
 
 ![image_Operator_certManager](images/Operator_certManager.png)
 
 ### 7 create secret with DNS access credentials
+---
 
 ### 8 create secret with CA access credentials
+---
 
 ### 9 create cert-manager Clusteruser configuration
+---
 
