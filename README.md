@@ -133,9 +133,17 @@ done
 # Overview of the installation flow
 ---
 
-And following Monty Python's Flying Circus .... And now for something completely different [see @https://en.wikipedia.org/wiki/And_Now_for_Something_Completely_Different]
+And following Monty Python's Flying Circus .... [And now for something completely  different](https://en.wikipedia.org/wiki/And_Now_for_Something_Completely_Different)
 
 ![image_google_auth](images/winkelschleifer-sequence.png)
+This picture illustrates the flow of things in our Red Hat Openshift environment
++ Roles
+  + OpenShift Administrator [has administrative rights in a cluster (aka cluster admin)]
+  + OpenShift Developer [Has only limited rights which are mostly restricted to our project]
++ Instances
+  + OpenShift [Kubernetes Management Platform]
+  + Certificate Authority [CA - [we used Let's Encrypt](https://en.wikipedia.org/wiki/Let's_Encrypt)]
+
 
 ## 1 Install Operators and basic configuration(s)
 ---
