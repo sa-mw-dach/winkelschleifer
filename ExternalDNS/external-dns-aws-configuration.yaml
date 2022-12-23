@@ -1,0 +1,26 @@
+aapiVersion: externaldns.olm.openshift.io/v1beta1
+kind: ExternalDNS
+metadata:
+  name: sample-aws
+spec:
+  domains:
+    - filterType: Include
+      matchType: Exact
+      name: winkelschleifer.marina-sport.de
+  provider:
+    aws:
+      credentials:
+        name: route53-credentials-secret
+    type: AWS
+  source:
+    fqdnTemplate:
+      - '{{.Name}}.winkelschleifer.marina-sport.de'
+    hostnameAnnotation: Ignore
+    openshiftRouteOptions:
+      routerName: default
+    service:
+      serviceType:
+        - LoadBalancer
+    type: OpenShiftRoute
+  zones:
+    - Z066982432DCIFTA5HXMZ

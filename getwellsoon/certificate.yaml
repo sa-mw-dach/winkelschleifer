@@ -1,0 +1,12 @@
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: getwellsoon-cert
+  namespace: getwellsoon
+spec:
+  dnsNames:
+    - getwellstefan.winkelschleifer.marina-sport.de
+  issuerRef:
+    kind: ClusterIssuer
+    name: letsencrypt-prod
+  secretName: getwellstefan-domain-certificate

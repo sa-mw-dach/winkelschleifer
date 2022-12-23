@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: webserver
+  labels:
+    app: webserver
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: webserver
+  template:
+    metadata:
+      labels:
+        app: webserver
+    spec:
+      volumes:
+      - name: html
+        persistentVolumeClaim:
+          claimName: ws-claim
+      containers:
+      - name: webserver
+        image: nginxinc/nginx-unprivileged:1.22
+        ports:
+        - containerPort: 8080
+        volumeMounts:
+        - mountPath: "/usr/share/nginx/html"
+          name: html
+      securityContext:
+        capabilities:
+          drop:
+            - ALL
+        allowPrivilegeEscalation: false
+        runAsNonRoot: true
+        seccompProfile:
+          type: RuntimeDefault
