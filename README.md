@@ -106,7 +106,12 @@ oc apply -f ./release/kubernetes-manifests.yaml
 
 ### Option 2: Remove SecurityContext & Deploy application
 
-This makes the default OpenShift SCC config work
+This makes the default OpenShift SCC config work. And we use the As-Is Kubernetes Manifest:
+
+```
+oc apply -f ./release/kubernetes-manifests.yaml
+```
+And we run through each of the deploaments in order to fix the security context(s)
 
 ```
 for DEPLOY in `oc get deployments -o jsonpath='{range .items[*]}{.metadata.name}{" "}{end}'`
@@ -117,9 +122,11 @@ done
 
 # Overview of the installation flow
 
+And following Monty Python's Flying Circus .... And now for something completely different [see @https://en.wikipedia.org/wiki/And_Now_for_Something_Completely_Different]
+
 ![image_google_auth](images/winkelschleifer-sequence.png)
 
-## 1 Install Operators and basic confiuration(s)
+## 1 Install Operators and basic configuration(s)
 
 ( ExternalDNS, cert-manager, cert-utils)
 
