@@ -143,6 +143,12 @@ This picture illustrates the flow of things in our Red Hat Openshift environment
 + Instances
   + OpenShift [Kubernetes Management Platform]
   + Certificate Authority [CA - [we used Let's Encrypt](https://en.wikipedia.org/wiki/Let's_Encrypt)]
+  + DNS Zone [Administrative access to manage on subdomain level]
++ Tasks
+  + Configuration [Admin tasks prior to the instalation]
+  + ExternalDNS [Tasks executed by the ExternalDNS Operator]
+  + Cert-Manager [Tasks executed by the cert-manager Operator]
++ Usage [Separated block of activities which are executed and orchestrated by the operators during runtime]
 
 
 ## 1 Install Operators and basic configuration(s)
