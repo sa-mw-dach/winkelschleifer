@@ -4,7 +4,7 @@ Segregation of duties - how a Kubernetes Management Platform adds security to yo
 
 ## Introduction
 
-Based on Stefan's post [1] [Configuring custom domains for applications – the operator-way](https://www.opensourcerers.org/2022/12/12/configuring-custom-domains-for-applications-the-operator-way/) in December some of us felt inspired to replay what Stefan outlined.
+Based on Stefan's post [1] [Configuring custom domains for applications – the operator-way](https://www.opensourcerers.org/2022/12/12/configuring-custom-domains-for-applications-the-operator-way/) in December, some of us felt inspired to replay what Stefan outlined.
 
 Main topics we wanted to cover:
 * Utilize a custom domain name for a project
@@ -67,6 +67,19 @@ The below picture illustrates the flow of things in our Red Hat Openshift enviro
 
 ![dns_sequence_overview](images/winkelschleifer-sequence.png)
 
+## How security plays along
+
+There are two major blocks of activities which need to happen.
+
+First - the **administrative ones** which need to be executed with additional rights and are mostly handled outside of application teams. Respresented by the **red box**.
+
+<img src="images/winkelschleifer-sequence-admin.png" alt="Admin tasks" width="300"/>
+
+Second - the **application operational ones** which are executed by application development and application operations teams in typical enterprise environments. Represented by the **green box**.
+
+<img src="images/winkelschleifer-sequence-Developer2.png" alt="Developer tasks" width="300"/>
+
+## Conclusion
 
 
 ## References
@@ -74,10 +87,3 @@ The below picture illustrates the flow of things in our Red Hat Openshift enviro
 [1] [Configuring custom domains for applications – the operator-way](https://www.opensourcerers.org/2022/12/12/configuring-custom-domains-for-applications-the-operator-way/)
 
 [2] [The Operator Framework](https://operatorframework.io/)
-
-## Images
-
-
-![dns_sequence_admin](images/winkelschleifer-sequence-admin.png)
-
-![dns_sequence_developer](images/winkelschleifer-sequence-Developer2.png)
