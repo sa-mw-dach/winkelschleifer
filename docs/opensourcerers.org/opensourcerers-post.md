@@ -81,6 +81,15 @@ Second - the **application operational ones** which are executed by application 
 
 ## Conclusion
 
+A Kubernetes Management platform and operators help you in two ways, when it comes to security
+
+**First** - support to secure your applications by making sure that end-to-end encryption is in place, is easily manageable, includes secure management of external resources (DNS and CA)
+
+**Second** - and this is an often underestimated puzzle part in K8s management - it supports to live segregation of duties. Development teams are enabled to roll out new applications "by click of a button" and at the same time the DNS management is kept separate to ensure securtiy.
+
+And this is a lot of security you get !
+
+Happy 2023 !!
 
 ## References
 
