@@ -12,13 +12,34 @@ Main topics we wanted to cover:
 * Leave all certificate handling with the K8s platform
 * Be able to create new projects leveraging the certification and DNS handling with a minimum effort
 
-And as Red Hat employees the K8s management platform choice is more than obvious. We decided for Red Hat OpenShift as a base for the next steps. The concept of operators (see [2]) is used and referenced in Stefan's post.
+And as Red Hat employees the K8s management platform choice is more than obvious. We decided for Red Hat OpenShift as a base for the next steps.
+
+The concept of operators (see [2]) is used and referenced in Stefan's post. And while running through the described topics you will see that operators and the K8s management platform solve security aspects in a standard workflow.
+
+## Starting point
+
+We started with the below workflow
+
+1. Deploy a managed Red Hat OpenShift platform in either AWS or Azure or Google
+2. Configure an authentication provider to utilize the on-board multi tenant capabilites of Red Hat OpenShift
+3. Install the three operators ( cert utils, external DNS managament and cert manager)
+4. Deploy the example application
+5. Expose the application with a secure, custom domain name
+
+And here we made a change to the details in [1], when we started to utilize a domain hosted "somewhere". In order to do so we had to ask for help from the outside.
+
+**At this point we started to discuss security aspects of our workflow**
+
+<img src="images/hl-architecture-change.png" align="center" alt="high level architecture change" width="200"/> </p>
+
+Delegating such tasks to an operator instead of asking for help from the outside of your team adds security and speeds up deployments.
+
 
 ## The Operators
 
 ---
 
-While reading through the post [1] you come across three operators which will be used and they are listed below:
+The operators we will use are listed below
 
 [//]:![cert-utils-operator](images/cert-utils-op.png)
 [//]:![cert-utils-operator](images/cert-manager.png)
@@ -28,27 +49,13 @@ While reading through the post [1] you come across three operators which will be
 <img src="images/cert-manager.png" alt="cert-manager-operator" width="200"/>
 <img src="images/ext-dns-op.png" alt="external-dns-operator" width="200"/>
 
+And please keep in mind that operators do a lot more for your deployments, as they add operational knowledge to your software ( see [2])
+
 ---
 
-## Starting point
+## The Workflow
 
-We - like everybody else - all started with the below workflow
-
-1. Deploy a managed Red Hat OpenShift platform in either AWS or Azure or Google
-2. Configure an authentication provider to utilize the on-board multi tenant capabilites of Red Hat OpenShift
-3. Install the three operators ( cert utils, external DNS managament and cert manager)
-4. Deploy the example application
-5. Expose the application with a secure, custom domain name
-
-<img src="images/hl-architecture-change.png" align="right" alt="high level architecture change" width="200"/> </p>
-
-And here we made a change to the details in [1], when we started to utilize a domain hosted "somewhere". In order to do so we had to ask for help from the outside. We had to ask a colleague with admin access of this domain for help to make adjustments to the DNS records. In the following flow the externalDNS Operator will need access to the DNS record configuration.
-
-## The who-does-what
-
-**At this point we started to discuss security aspects of our workflow**
-
-And to make ourselves aware of the risks we draw a picture of who does what in our deployment.
+We drew a picture to make ourselves aware of the roles, the involved instances, and the operator based workflow.
 
 
 The below picture illustrates the flow of things in our Red Hat Openshift environment
@@ -75,9 +82,22 @@ First - the **administrative ones** which need to be executed with additional ri
 
 <img src="images/winkelschleifer-sequence-admin.png" alt="Admin tasks" width="300"/>
 
+And there are many tasks to be done in order to configure the operators right. All these tasks have impact on systems outside of the developer's responsiblity. Represented by the **blue box**
+
+<img src="images/winkelschleifer-sequence-admin-tasks.png" alt="Admin tasks" width="300"/>
+
+To add security to your workflows you want to keep these tasks outside of the development team's responsibility. And at the same time the deployment frequency should stay high or ideally become higher. 
+
 Second - the **application operational ones** which are executed by application development and application operations teams in typical enterprise environments. Represented by the **green box**.
 
 <img src="images/winkelschleifer-sequence-Developer2.png" alt="Developer tasks" width="300"/>
+
+To achieve high deployment frequency and still stay secure the development teams benefit from the configured operators, because:
+* **yellow box** all tasks which have dependencies to systems outside of the application are executed by the operators
+* **blue box** there is a single task which is initiated by the development team and utilizing the operator initiated tasks
+
+<img src="images/winkelschleifer-sequence-Developer-task.png" alt="Developer tasks" width="300"/>
+
 
 ## Conclusion
 
