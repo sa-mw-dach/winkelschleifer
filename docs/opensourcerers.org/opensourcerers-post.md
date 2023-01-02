@@ -4,7 +4,7 @@ Segregation of duties - how a Kubernetes Management Platform adds security to yo
 
 ## Introduction
 
-Based on Stefan's post [1] [Configuring custom domains for applications – the operator-way](https://www.opensourcerers.org/2022/12/12/configuring-custom-domains-for-applications-the-operator-way/) in December, some of us felt inspired to replay what Stefan outlined.
+Based on Stefan's post [1] **Configuring custom domains for applications – the operator-way** in December, some of us felt inspired to replay what Stefan outlined.
 
 Main topics we wanted to cover:
 * Utilize a custom domain name for a project
