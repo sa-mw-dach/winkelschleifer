@@ -78,7 +78,7 @@ The below picture illustrates the flow of things in our Red Hat Openshift enviro
 
 There are two major blocks of activities which need to happen.
 
-First - the **administrative ones** which need to be executed with additional rights and are mostly handled outside of application teams. Respresented by the **red box**.
+First - the **administrative ones** which need to be executed with additional rights. These tasks are mostly handled outside of application teams. Respresented by the **red box**.
 
 <img src="images/winkelschleifer-sequence-admin.png" alt="Admin tasks" width="300"/>
 
@@ -105,7 +105,7 @@ A Kubernetes Management platform and operators help you in two ways, when it com
 
 **First** - support to secure your applications by making sure that end-to-end encryption is in place, is easily manageable, includes secure management of external resources (DNS and CA)
 
-**Second** - and this is an often underestimated puzzle part in K8s management - it supports to live segregation of duties. Development teams are enabled to roll out new applications "by click of a button" and at the same time the DNS management is kept separate to ensure securtiy.
+**Second** - and this is an often underestimated puzzle part in K8s management - it supports to live segregation of duties. Development teams are enabled to roll out new applications "by click of a button" and at the same time the DNS management is kept separate to ensure security.
 
 And this is a lot of security you get !
 
