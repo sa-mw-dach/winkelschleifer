@@ -1,0 +1,37 @@
+@startuml images/winkelschleifer-sequence_II.png
+
+
+actor "OpenShift Administrator" as admin
+actor "OpenShift Developer" as dev 
+participant "OpenShift" as openshift
+'participant "ExternalDNS operator" as externaldns
+'participant "Cert-Manager" as cert-manager
+'participant "Cert-Util" as cert-util
+participant "Certificate Authority" as ca
+participant "DNS Zone" as dns 
+
+autonumber
+
+group Usage
+    dev -> openshift: create Route with cert-utils annotation
+    group External DNS operator
+        openshift -> dns: create CNAME
+    end
+
+    dev -> openshift: create Certificate
+    group Cert-Manager operator
+        openshift -> ca: issue certificate
+        ca -> openshift: challenge
+        openshift -> dns: challenge response
+        ca -> dns: validate challenge response
+        ca -> ca: issue Certificate
+        openshift -> ca: retrieve Certificate
+        openshift -> openshift: store certificate in secret
+    end
+
+    group Cert-Utils operator
+        openshift -> openshift: configure route to use certificate from secret
+    end
+end
+
+@enduml
