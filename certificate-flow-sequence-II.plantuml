@@ -1,8 +1,8 @@
 @startuml images/winkelschleifer-sequence_II.png
 
 
-actor "OpenShift Administrator" as admin
-actor "OpenShift Developer" as dev 
+' actor "OpenShift Administrator" as admin
+actor "OpenShift Developer" as dev #red
 participant "OpenShift" as openshift
 'participant "ExternalDNS operator" as externaldns
 'participant "Cert-Manager" as cert-manager
